@@ -647,7 +647,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 {
   int i;
   int j;
-  int k;
   int x;
   int index;
   int currentPlayer = whoseTurn(state);
@@ -1131,9 +1130,11 @@ int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphan
 		  tempCount++;
 		}
 	}
-	while(tempCount-1>=0){
+	while(tempCount>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[tempCount-1]; // discard all cards in play that have been drawn
 		tempCount=tempCount-1;
+		
+        printf("Adventurer discarded %d: %d\n", tempCount-1, temphand[tempCount-1]);
 	}
 	return 0;
 }
@@ -1142,7 +1143,7 @@ int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphan
 int cardEffectSmithy(struct gameState *state, int currentPlayer, int handPos)
 {
 	//+3 Cards
-     for (int i = 0; i < 3; i++)
+     for (int i = 0; i <= 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1164,7 +1165,7 @@ int cardEffectSalvager(struct gameState *state, int currentPlayer, int handPos, 
 		//gain coins equal to trashed card
 		state->coins = state->coins + getCost( handCard(cardToTrash, state) );
 		//trash card
-		discardCard(cardToTrash, currentPlayer, state, 1);	
+		discardCard(cardToTrash, currentPlayer, state, 0);	
 	}
 		
 	//discard card
@@ -1193,7 +1194,7 @@ int cardEffectCutpurse(struct gameState *state, int currentPlayer, int handPos)
 					{
 						if (DEBUG)
 							printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-						}	
+					}	
 					break;
 				}		
 			}
