@@ -655,7 +655,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int cardDrawn;
   int z = 0;// this is the counter for the temp hand
   int result = 0;
   if (nextPlayer > (state->numPlayers - 1)){
@@ -667,7 +666,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      result = cardEffectAdventurer(state, currentPlayer, temphand);
+      result = cardEffectAdventurer(state, currentPlayer, temphand, z);
       return result;
 			
     case council_room:
@@ -827,7 +826,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case baron:
-      result = cardEffectBaron(state, currentPlayer, handPos);
+      result = cardEffectBaron(state, currentPlayer, handPos, choice1);
       return result;
 		
     case great_hall:
@@ -1114,9 +1113,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 }
 
 // Refactor of Adventurer
-int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphand[])
+int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphand[], int tempCount)
 {
 	int drawntreasure = 0;
+	int cardDrawn;
 	while(drawntreasure<2){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		  shuffle(currentPlayer, state);
@@ -1126,14 +1126,14 @@ int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphan
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
 		  drawntreasure++;
 		}else{
-		  temphand[z]=cardDrawn;
+		  temphand[tempCount]=cardDrawn;
 		  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-		  z++;
+		  tempCount++;
 		}
 	}
-	while(z-1>=0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-		z=z-1;
+	while(tempCount-1>=0){
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[tempCount-1]; // discard all cards in play that have been drawn
+		tempCount=tempCount-1;
 	}
 	return 0;
 }
@@ -1142,7 +1142,7 @@ int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphan
 int cardEffectSmithy(struct gameState *state, int currentPlayer, int handPos)
 {
 	//+3 Cards
-     for (i = 0; i < 3; i++)
+     for (int i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1176,11 +1176,11 @@ int cardEffectSalvager(struct gameState *state, int currentPlayer, int handPos, 
 int cardEffectCutpurse(struct gameState *state, int currentPlayer, int handPos)
 {
 	updateCoins(currentPlayer, state, 2);
-	for (i = 0; i < state->numPlayers; i++)
+	for (int i = 0; i < state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
 		{
-			for (j = 0; j < state->handCount[i]; j++)
+			for (int j = 0; j < state->handCount[i]; j++)
 			{
 				if (state->hand[i][j] == copper)
 				{
@@ -1189,7 +1189,7 @@ int cardEffectCutpurse(struct gameState *state, int currentPlayer, int handPos)
 				}
 				if (j == state->handCount[i])
 				{
-					for (k = 0; k < state->handCount[i]; k++)
+					for (int k = 0; k < state->handCount[i]; k++)
 					{
 						if (DEBUG)
 							printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
@@ -1206,10 +1206,10 @@ int cardEffectCutpurse(struct gameState *state, int currentPlayer, int handPos)
 }
 
 // Refactor of Baron
-int cardEffectBaron(struct gameState *state, int currentPlayer, int handPos)
+int cardEffectBaron(struct gameState *state, int currentPlayer, int handPos, int discardEstate)
 {
 	state->numBuys++;//Increase buys by 1!
-	if (choice1 > 0){//Boolean true or going to discard an estate
+	if (discardEstate > 0){//Boolean true or going to discard an estate
 		int p = 0;//Iterator for hand!
 		int card_not_discarded = 1;//Flag for discard set!
 		while(card_not_discarded){
