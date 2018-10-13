@@ -1229,13 +1229,13 @@ int cardEffectBaron(struct gameState *state, int currentPlayer, int handPos, int
 					printf("No estate cards in your hand, invalid choice\n");
 					printf("Must gain an estate if there are any\n");
 				}
-				if (supplyCount(estate, state) > 0){
-					gainCard(estate, state, 0, currentPlayer);
-					state->supplyCount[estate]--;//Decrement estates
-					if (supplyCount(estate, state) == 0){
-						isGameOver(state);
-					}
-				}
+				// if (supplyCount(estate, state) > 0){
+					// gainCard(estate, state, 0, currentPlayer);
+					// state->supplyCount[estate]--;//Decrement estates
+					// if (supplyCount(estate, state) == 0){
+						// isGameOver(state);
+					// }
+				// }
 				card_not_discarded = 0;//Exit the loop
 			} else {
 				p++;//Next card
