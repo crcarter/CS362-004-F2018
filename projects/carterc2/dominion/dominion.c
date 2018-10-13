@@ -1133,8 +1133,6 @@ int cardEffectAdventurer(struct gameState *state, int currentPlayer, int temphan
 	while(tempCount>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[tempCount-1]; // discard all cards in play that have been drawn
 		tempCount=tempCount-1;
-		
-        printf("Adventurer discarded %d: %d\n", tempCount-1, temphand[tempCount-1]);
 	}
 	return 0;
 }
