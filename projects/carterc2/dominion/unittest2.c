@@ -69,8 +69,8 @@
 	}
 	
 	if (allPass == 1) {
-		printf("TEST SUCCESSFULLY COMPLETED”");
+		printf("TEST SUCCESSFULLY COMPLETED\n");
 	} else {
-		printf("TEST FAILED");
+		printf("TEST FAILED\n");
 	}
  }
