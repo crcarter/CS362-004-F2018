@@ -19,6 +19,10 @@
                , remodel, smithy, village, baron, treasure_map};	// Includes adventurer and treasure_map to get the boundaries
     struct gameState G;
 	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+	// Verify game initialized correctly
+	if (r != 0) {
+		printf("!!!There was an error intiallizing the game.  Test results may be bad.\n");
+	}
 	
 	// Test that at the start of the game the player 0 has 7 coppers
 	p = 0;
