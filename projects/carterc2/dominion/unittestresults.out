@@ -1,0 +1,136 @@
+unittest1.c
+FAIL: The starting score of 1 did not matched the expected score of 3 for player 0.
+FAIL: The starting score of 0 did not matched the expected score of 3 for player 1.
+PASS: The score of 3 matched the expected score of 3 for 1 duchy in the players hand.
+FAIL: The score of 4 did not matched the expected score of 3 for 1 duchy in the players discard.
+FAIL: The score of 0 did not matched the expected score of 3 for 1 duchy in the players deck.
+FAIL: The score of 0 did not matched the expected score of 2 for 1 gardens in the players discard and 11 total cards.
+TEST FAILED
+File 'dominion.c'
+Lines executed:21.79% of 560
+Creating 'dominion.c.gcov'
+
+unittest2.c
+PASS: The game just started and is not over which is correct.
+PASS: The game is over there are no more provinces.
+PASS: The game is over three supply piles are empty.
+FAIL: The game is not over but should be, three supply piles are empty.
+TEST FAILED
+File 'dominion.c'
+Lines executed:23.57% of 560
+Creating 'dominion.c.gcov'
+
+unittest3.c
+PASS: The game just started and player 0 has 7 coppers which is correct.
+PASS: The game just started and player 0 has 3 estates which is correct.
+PASS: The game just started and player 1 has 7 coppers which is correct.
+PASS: The game just started and player 1 has 3 estates which is correct.
+PASS: The game just started and player 0 has 0 smithies which is correct.
+PASS: Player 0 has 8 coppers which is correct.
+PASS: Player 0 has 4 estates which is correct.
+PASS: Player 0 has 1 smithies which is correct.
+TEST SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:23.57% of 560
+Creating 'dominion.c.gcov'
+
+unittest4.c
+PASS: Correctly gained an duchy to discard.
+PASS: Correctly gained an duchy to deck.
+PASS: Correctly gained an duchy to hand.
+PASS: That card is not in the supply so you could not gain it.
+PASS: The card was gained correctly, 9 left in the pile.
+PASS: The card was gained correctly, 8 left in the pile.
+PASS: The card was gained correctly, 7 left in the pile.
+PASS: The card was gained correctly, 6 left in the pile.
+PASS: The card was gained correctly, 5 left in the pile.
+PASS: The card was gained correctly, 4 left in the pile.
+PASS: The card was gained correctly, 3 left in the pile.
+PASS: The card was gained correctly, 2 left in the pile.
+PASS: The card was gained correctly, 1 left in the pile.
+PASS: The card was gained correctly, 0 left in the pile.
+PASS: The card was not gained, the pile in the supply is empty.
+TEST SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:26.25% of 560
+Creating 'dominion.c.gcov'
+
+cardtest1.c
+PASS: 13 was played, and handPos is now 1.
+FAIL: Player has the incorrect amount of cards in hand, expected 7 cards, actual 8 cards for player 0.
+FAIL: Deck expected 2 cards, actual 1 cards for player 0.
+PASS: Discard expected 0 cards, actual 0 cards for player 0.
+PASS: numActions expected 1 action, actual 1 actions for player 0.
+PASS: All supply piles matched.
+PASS: Deck expected 10 cards, actual 10 cards for player 1.
+PASS: Hand expected 0 cards, actual 0 cards for player 1.
+PASS: Discard expected 0 cards, actual 0 cards for player 1.
+TEST FAILED
+File 'dominion.c'
+Lines executed:31.25% of 560
+Creating 'dominion.c.gcov'
+
+cardtest2.c
+FAIL: 7 was played, and handPos is still 7.
+FAIL: Player has the incorrect amount of cards in hand, expected 6 cards, actual 7 cards.
+PASS: The last card is 4 which is a treasure.
+PASS: The second to last card is 4 which is a treasure.
+PASS: Deck expected 2 cards, actual 2 cards.
+FAIL: Discard expected 1 cards, actual 2 cards.
+PASS: numActions expected 1 action, actual 1 actions for player 0.
+PASS: All supply piles matched.
+PASS: Deck expected 10 cards, actual 10 cards for player 1.
+PASS: Hand expected 0 cards, actual 0 cards for player 1.
+PASS: Discard expected 0 cards, actual 0 cards for player 1.
+TEST FAILED
+File 'dominion.c'
+Lines executed:34.29% of 560
+Creating 'dominion.c.gcov'
+
+cardtest3.c
+PASS: 8 was played, and handPos is now 1.
+PASS: The 4 cards was gained correctly and 1 played from the hand, expected 8 cards, actual 8 cards for player 0.
+PASS: Deck expected 1 cards, actual 1 cards for player 0.
+PASS: Discard expected 0 cards, actual 0 cards for player 0.
+PASS: numBuys expected 2 buys, actual 2 buys for player 0.
+PASS: numActions expected 1 action, actual 1 actions for player 0.
+PASS: All supply piles matched.
+PASS: Deck expected 9 cards, actual 9 cards for player 1.
+PASS: Hand expected 1 cards, actual 1 cards for player 1.
+PASS: Discard expected 0 cards, actual 0 cards for player 1.
+TEST SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:35.71% of 560
+Creating 'dominion.c.gcov'
+
+cardtest4.c
+---Checking choice to not discard estate.---
+FAIL: 15 was played, and handPos is still 15.
+FAIL: Player has the incorrect amount of cards in hand, expected 4 cards, actual 5 cards for player 0.
+PASS: Deck expected 5 cards, actual 5 cards for player 0.
+PASS: Discard expected 1 cards, actual 1 cards for player 0.
+PASS: numBuys expected 2 buys, actual 2 buys for player 0.
+PASS: numActions expected 1 action, actual 1 actions for player 0.
+FAIL: Pile 1, expected 8 cards, actual 6 cards.
+---Checking choice to discard estate without estate in hand.---
+FAIL: 15 was played, and handPos is still 15.
+FAIL: Player has the incorrect amount of cards in hand, expected 4 cards, actual 5 cards for player 0.
+PASS: Deck expected 5 cards, actual 5 cards for player 0.
+FAIL: Discard expected 1 cards, actual 0 cards for player 0.
+---Checking choice to discard estate with estate in hand.---
+FAIL: 15 was played, and handPos is still 15.
+PASS: 1 was discarded, and handPos is now 4.
+FAIL: Player has the incorrect amount of cards in hand, expected 3 cards, actual 4 cards for player 0.
+PASS: Deck expected 5 cards, actual 5 cards for player 0.
+PASS: Discard expected 1 cards, actual 1 cards for player 0.
+PASS: numBuys expected 2 buys, actual 2 buys for player 0.
+PASS: numcoins expected 8 cards, actual 8 cards for player 0.
+PASS: All supply piles matched.
+PASS: Deck expected 10 cards, actual 10 cards for player 1.
+PASS: Hand expected 0 cards, actual 0 cards for player 1.
+PASS: Discard expected 0 cards, actual 0 cards for player 1.
+TEST FAILED
+File 'dominion.c'
+Lines executed:40.18% of 560
+Creating 'dominion.c.gcov'
+
