@@ -17,9 +17,8 @@
     int numPlayer = 2;
 	int card = adventurer;
 	int p = 0;
-	int supplyPass = 1;
 	int numTreasureCards = 0;
-	int r, expectedNumCards, actualNumCards, cardDrawn, expectedNumActions, actualNumActions;
+	int r, expectedNumCards, actualNumCards, cardDrawn;
     int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 	int numCountFails = 0;
 	int numNoAdventurerCountFails = 0;
@@ -71,9 +70,7 @@
 			expectedNumCards = baseG.handCount[p] + numTreasureCards - 1;
 		}
 		actualNumCards = G.handCount[p];
-		if (actualNumCards == expectedNumCards) {
-			//printf("PASS: The cards were gained correctly and 1 played from the hand, expected %d cards, actual %d cards.\n", expectedNumCards, actualNumCards);
-		} else {
+		if (actualNumCards != expectedNumCards) {
 			if (numCountFails <= 0) {
 				printf("FAIL: Player %d, has the incorrect amount of cards in hand, expected %d cards, actual %d cards, numTreasureCards: %d.\n", p, expectedNumCards, actualNumCards, numTreasureCards);
 				allPass = 0;
@@ -87,9 +84,7 @@
 			expectedNumCards = baseG.handCount[p] + numTreasureCards;
 		}
 		actualNumCards = G.handCount[p];
-		if (actualNumCards == expectedNumCards) {
-			//printf("PASS: The cards were gained correctly and 1 played from the hand, expected %d cards, actual %d cards.\n", expectedNumCards, actualNumCards);
-		} else {
+		if (actualNumCards != expectedNumCards) {
 			//if (numNoAdventurerCountFails <= 0) {
 				printf("FAIL: Player %d, has the incorrect amount of cards in hand, not counting Adventurer, expected %d cards, actual %d cards, numTreasureCards: %d.\n", p, expectedNumCards, actualNumCards, numTreasureCards);
 				allPass = 0;
@@ -100,9 +95,7 @@
 		// Verify the last two cards are treasure cards
 		if (numTreasureCards >= 1) {
 			cardDrawn = G.hand[p][G.handCount[p]-1];
-			if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
-				//printf("PASS: The last card is %d which is a treasure.\n", cardDrawn);
-			} else {
+			if (cardDrawn != copper && cardDrawn != silver && cardDrawn != gold) {
 				printf("FAIL: Player %d, the last card is %d which is not a treasure. numTreasureCards: %d.\n", p, cardDrawn, numTreasureCards);
 				allPass = 0;
 				numWrongCardFails++;
@@ -110,9 +103,7 @@
 		}
 		if (numTreasureCards >= 2) {
 			cardDrawn = G.hand[p][G.handCount[p]-2];
-			if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
-				//printf("PASS: The second to last card is %d which is a treasure.\n", cardDrawn);
-			} else {
+			if (cardDrawn != copper && cardDrawn != silver && cardDrawn != gold) {
 				printf("FAIL: Player %d, the second to last card is %d which is not a treasure. numTreasureCards: %d.\n", p, cardDrawn, numTreasureCards);
 				allPass = 0;
 				numWrongCardFails++;
