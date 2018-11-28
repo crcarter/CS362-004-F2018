@@ -21,8 +21,66 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-//You can use this function to implement your manual testing	   
+//You can use this function to implement your manual testing	
+	   boolean withError = false;  // Change to true to see it crash
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   if (urlVal.isValid("http://www.google.com")) {
+	      System.out.println("url is valid");
+	   } else {
+	      System.out.println("url is invalid");
+	   }
+	   String str = "http://www.google.com";
+	   boolean result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   assertTrue(result); 
+	   str = "http://www.google.com/";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   assertTrue(result);  
+	   str = "http://www.google.com/$23?action=edit&mode=up";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   assertTrue(result);  
+	   // Error here
+	   if (withError) {
+		   str = "ftp://www.google.com/";
+		   result = urlVal.isValid(str);
+		   System.out.println(result + " " + str);
+		   assertTrue(result);
+		   str = "ftp://go.au/$23?action=edit&mode=up";
+		   result = urlVal.isValid(str);
+		   System.out.println(result + " " + str);
+		   assertTrue(result);  
+		   str = "h3t://255.255.255.255:65535?action=view";
+		   result = urlVal.isValid(str);
+		   System.out.println(result + " " + str);
+		   assertTrue(result);  
+		   str = "h3t://255.com/test1/file?action=edit&mode=up";
+		   result = urlVal.isValid(str);
+		   System.out.println(result + " " + str);
+		   assertTrue(result);  
+	   }
 	   
+	   
+	   // Invalid
+	   str = "http://www.google.com/\\";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   str = "http://www.google.com/..";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   //assertTrue(result);   
+	   str = "http:/www.google.com/";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   str = "http:/www.google.com";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+	   str = "://www.google.com/";
+	   result = urlVal.isValid(str);
+	   System.out.println(result + " " + str);
+
+	   System.out.println("End manual testing.");
    }
    
    
@@ -41,7 +99,6 @@ public class UrlValidatorTest extends TestCase {
    public void testIsValid()
    {
 	   //You can use this function for programming based testing
-
    }
    
 
